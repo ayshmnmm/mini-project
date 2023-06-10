@@ -35,7 +35,7 @@ class Game(Page):
         self.ref = ref
         self.turn = 1
         self.area = tkinter.Frame(self.parent, background='green')
-        self.area.pack(expand=True, fill='x', padx=150, pady=75)
+        self.area.pack(expand=True, fill='both', padx=150, pady=75)
         self.area.rowconfigure(0,weight=1)
         self.area.rowconfigure(1,weight=1)
         self.area.rowconfigure(2,weight=1)
@@ -49,6 +49,6 @@ class Game(Page):
 
     def display(self):
         for i in range(4):
-            tkinter.Button(self.area, text="replace soon").grid(row=i, column=0, sticky='ew')
+            tkinter.Button(self.area, text="replace soon").grid(row=i, column=0, sticky='ewns')
 
 
