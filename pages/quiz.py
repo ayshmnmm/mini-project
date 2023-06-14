@@ -49,12 +49,13 @@ class Game(Page):
 
     def display(self, question, options, correct_index):
         self.area = tkinter.Frame(self.quiz_area, background='white')
-        self.area.pack(expand=True, fill='both', padx=120, pady=75)
+        self.area.pack(expand=True, fill='both', padx=120, pady=45)
         self.area.rowconfigure(0,weight=1)
         self.area.rowconfigure(1,weight=1)
         self.area.rowconfigure(2,weight=1)
         self.area.rowconfigure(3,weight=1)
         self.area.rowconfigure(4,weight=1)
+        self.area.rowconfigure(5,weight=1)
         self.area.columnconfigure(0,weight=1)
         tkinter.Label(self.area, text=question, font=('Arial',15), background='white', wraplength=360).grid(row=0, column=0, sticky='n')
         self.buttons = []
@@ -68,23 +69,24 @@ class Game(Page):
             self.buttons[k].grid(row=i+1, column=0, sticky='ewns', pady=2)
             k += 1
 
-    def ask_questions(self):
-        self.area.destroy()
+    def ask_questions(self):  
         ques = random.choice(self.questions)
         self.questions.remove(ques)
+        self.area.destroy()
         self.display(ques[0],ques[1],ques[2])
         if self.count >= settings.QUESTIONS_COUNT: 
             self.gameover()
+        
 
     def click(self, choice, correct_index, buttons):
         for button in buttons:
             button.config(state=tkinter.DISABLED)
         self.count += 1
         if choice==correct_index:
-            buttons[choice].config(background='lime')
+            buttons[choice].config(background='#94e36f')
             self.score += 1
         else:
-            buttons[choice].config(background='salmon')
+            buttons[choice].config(background='#e38f8f')
         self.scoreboard.config(text=f'{self.score}/{self.count}')
         self.area.after(1000,lambda:self.ask_questions())
 
