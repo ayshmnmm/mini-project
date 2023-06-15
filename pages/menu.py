@@ -39,7 +39,9 @@ class Page:
         self.passwd_btn = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/lock.png'))
         tkinter.Button(self.launcher, image=self.passwd_btn, borderwidth=0, background='white', command=lambda: self.launch(pages.password_generator)).grid(row=0, column=2)
 
-        # tkinter.Button(self.launcher, image=self.xo_btn, borderwidth=0, background='white').grid(row=1, column=0)
+        self.sudoku_btn = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/sudoku.png'))
+        tkinter.Button(self.launcher, image=self.sudoku_btn, borderwidth=0, background='white', command=lambda: self.launch(pages.sudoku_solver)).grid(row=1, column=0)
+
         # tkinter.Button(self.launcher, image=self.xo_btn, borderwidth=0, background='white').grid(row=1, column=1)
         # tkinter.Button(self.launcher, image=self.xo_btn, borderwidth=0, background='white').grid(row=1, column=2)
         # tkinter.Button(self.launcher, image=self.xo_btn, borderwidth=0, background='white').grid(row=2, column=0)

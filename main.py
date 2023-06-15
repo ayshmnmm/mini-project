@@ -1,6 +1,6 @@
 import tkinter 
 import os
-from pages import settings, menu, tic_tac_toe, quiz, password_generator
+from pages import settings, menu, tic_tac_toe, quiz, password_generator, sudoku_solver
 
 root = tkinter.Tk()
 root.geometry(f'{settings.WIDTH}x{settings.HEIGHT}')
