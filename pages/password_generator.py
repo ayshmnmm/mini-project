@@ -24,7 +24,6 @@ class Page:
 
 
     def close(self):
-        print("close")
         self.page.destroy()
         menu.Page(self.parent, self.cwd)
 
@@ -56,7 +55,7 @@ class Game(Page):
         self.ref.copy = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/copy.png'))
         self.regen_btn = tkinter.Button(self.area, text='Regenerate', image=self.ref.refresh, command=self.generate_password, borderwidth=0, background='white')
         self.regen_btn.grid(row=1, column=0)
-        self.copy_btn = tkinter.Button(self.area, text="Copy", image=self.ref.copy, command=self.copy, borderwidth=0, background='white')
+        self.copy_btn = tkinter.Button(self.area, text="Copy", image=self.ref.copy, command=self.copy, borderwidth=0, background='white', disabledforeground='white')
         self.copy_btn.grid(row=1, column=1)
         self.generate_password()
     
@@ -64,8 +63,8 @@ class Game(Page):
         self.confirmation = tkinter.Label(self.parent, text='Copied!', foreground='green', background='white', font=('Arial', 20))
         self.confirmation.place(x=settings.WIDTH//2,y=300,anchor='center')
         self.copy_btn.config(state='disabled')
-        self.area.after(1000, lambda: self.confirmation.destroy())
-        self.area.after(1000, lambda: self.copy_btn.config(state='normal'))
+        self.area.after(800, lambda: self.confirmation.destroy())
+        self.area.after(800, lambda: self.copy_btn.config(state='normal'))
         pyperclip.copy(self.password.get())
 
     def generate_password(self):

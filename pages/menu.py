@@ -39,18 +39,16 @@ class Page:
         self.passwd_btn = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/lock.png'))
         tkinter.Button(self.launcher, image=self.passwd_btn, borderwidth=0, background='white', command=lambda: self.launch(pages.password_generator)).grid(row=0, column=2)
 
-        tkinter.Button(self.launcher, image=self.xo_btn, borderwidth=0, background='white').grid(row=1, column=0)
-        tkinter.Button(self.launcher, image=self.xo_btn, borderwidth=0, background='white').grid(row=1, column=1)
-        tkinter.Button(self.launcher, image=self.xo_btn, borderwidth=0, background='white').grid(row=1, column=2)
-        tkinter.Button(self.launcher, image=self.xo_btn, borderwidth=0, background='white').grid(row=2, column=0)
+        # tkinter.Button(self.launcher, image=self.xo_btn, borderwidth=0, background='white').grid(row=1, column=0)
+        # tkinter.Button(self.launcher, image=self.xo_btn, borderwidth=0, background='white').grid(row=1, column=1)
+        # tkinter.Button(self.launcher, image=self.xo_btn, borderwidth=0, background='white').grid(row=1, column=2)
+        # tkinter.Button(self.launcher, image=self.xo_btn, borderwidth=0, background='white').grid(row=2, column=0)
 
 
     def close(self):
-        print("close")
         self.page.destroy()
 
     def launch(self, what):
-        print("launch")
         self.menu.destroy()
         what.Page(self.parent, self.cwd)
 

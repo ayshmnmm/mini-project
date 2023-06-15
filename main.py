@@ -8,6 +8,8 @@ root.title("Mini Project")
 root.resizable(False,False)
 
 cwd = os.path.dirname(__file__)
+icon = tkinter.PhotoImage(file=os.path.join(cwd, "img/logo.png"))
+root.iconphoto(False, icon)
 menu.Page(root, cwd)
 
 root.mainloop()

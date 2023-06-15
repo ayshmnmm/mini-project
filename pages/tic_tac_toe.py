@@ -28,7 +28,6 @@ class Page:
         global x_wins, y_wins
         x_wins = 0
         y_wins = 0
-        print("close")
         self.page.destroy()
         menu.Page(self.parent, self.cwd)
 
@@ -67,6 +66,13 @@ class Game(Page):
         self.display()
 
     def display(self):
+        self.x_score = tkinter.Label(self.body, text=f"X : {x_wins}", background='white', font=('Arial',15))
+        self.x_score.grid(row=0, column=0, sticky='ew')
+
+        self.y_score = tkinter.Label(self.body, text=f"O : {y_wins}", background='white', font=('Arial',15))
+        self.y_score.grid(row=0, column=2, sticky='nsew', pady=150)
+
+
         for i in range(3):
             for j in range(3):
                 cell = self.xo_board[i][j]

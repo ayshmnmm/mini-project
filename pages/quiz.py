@@ -23,7 +23,6 @@ class Page:
 
 
     def close(self):
-        print("close")
         self.page.destroy()
         menu.Page(self.parent, self.cwd)
 
@@ -60,7 +59,7 @@ class Game(Page):
         tkinter.Label(self.area, text=question, font=('Arial',15), background='white', wraplength=360).grid(row=0, column=0, sticky='n')
         self.buttons = []
         for i in range(1,5):
-            self.buttons.append(tkinter.Button(self.area, text=options[i-1], background='white', highlightcolor='salmon', command=lambda x=i-1, bts=self.buttons:self.click(x,correct_index,bts), relief=tkinter.GROOVE, borderwidth=1))
+            self.buttons.append(tkinter.Button(self.area, text=options[i-1], background='white', activebackground='#94e36f' if (i-1)==correct_index else '#e38f8f', bd=0, command=lambda x=i-1, bts=self.buttons:self.click(x,correct_index,bts), relief=tkinter.GROOVE, borderwidth=1, disabledforeground='black'))
         
         randorder = list(range(4))
         random.shuffle(randorder)
