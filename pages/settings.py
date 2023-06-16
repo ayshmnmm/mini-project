@@ -1,6 +1,9 @@
 WIDTH = 600
 HEIGHT = 600
 
+# number guessing
+MAX_TRIES = 7
+
 # quiz.py
 QUESTIONS_COUNT = 7
 QUIZ_QUESTIONS = [
