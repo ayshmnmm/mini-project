@@ -2,6 +2,7 @@ import tkinter
 from pages import settings, menu
 import os
 import random
+import time
 
 
 class Page:
@@ -76,6 +77,7 @@ class Game(Page):
         return False
 
     def solve_sudoku(self, isgen=False):
+        self.start = time.time()
         if not self.solve(self.sudoku_board, isgen=isgen):
             self.msg = tkinter.Label(self.parent, text="UNSOLVABLE SUDOKU!", background='white', foreground='red', font=('Arial',20))
             self.msg.place(x=settings.WIDTH//2,y=300, anchor='center')
@@ -119,7 +121,7 @@ class Game(Page):
         for i in order:
             if self.valid_move(board, i, row, column):
                 board[row][column].set(i)
-                if not isgen : self.area.update()
+                if not isgen and time.time() - self.start < 3: self.area.update()
                 if self.solve(board, row, column+1, isgen):
                     return True
             board[row][column].set("")
