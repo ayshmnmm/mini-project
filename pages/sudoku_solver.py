@@ -1,6 +1,7 @@
 import tkinter
 from pages import settings, menu
 import os
+import random
 
 
 class Page:
@@ -41,10 +42,29 @@ class Game(Page):
 
         self.display()
 
-        self.solve_btn = tkinter.Button(self.sud_area, text='solve', command=self.solve_sudoku)
-        self.solve_btn.grid(row=1,column=1,sticky='news',padx=10, pady=20)
+        self.ref.solve_img = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/solve.png'))
+        self.solve_btn = tkinter.Button(self.sud_area, image=self.ref.solve_img, text='solve', bd=0 , command=self.solve_sudoku)
+        self.solve_btn.grid(row=1,column=1,sticky='ws',padx=20, pady=20)
 
-        
+        self.ref.generate_img = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/generate.png'))
+        self.generate_btn = tkinter.Button(self.sud_area, image=self.ref.generate_img, bd=0, text='generate', command=self.generate)
+        self.generate_btn.grid(row=1,column=0,sticky='es',padx=20, pady=20)
+
+    def generate(self):
+        for i in range(9):
+            for j in range(9):
+                self.sudoku_board[i][j].set("")
+        self.solve_sudoku(isgen=True)
+        removed = 0
+        for i in range(9):
+            for j in range(9):
+                if removed > 55:
+                    return
+                if random.random() < 0.62:
+                    self.sudoku_board[i][j].set("")
+                    removed += 1
+
+
         
     def validate_input(self, data):
         if data=='0':
@@ -55,8 +75,8 @@ class Game(Page):
             return True
         return False
 
-    def solve_sudoku(self):
-        if not self.solve(self.sudoku_board):
+    def solve_sudoku(self, isgen=False):
+        if not self.solve(self.sudoku_board, isgen=isgen):
             self.msg = tkinter.Label(self.parent, text="UNSOLVABLE SUDOKU!", background='white', foreground='red', font=('Arial',20))
             self.msg.place(x=settings.WIDTH//2,y=300, anchor='center')
             self.area.after(1500, self.msg.destroy)
@@ -83,7 +103,7 @@ class Game(Page):
     
 
 
-    def solve(self, board, row=0, column=0):
+    def solve(self, board, row=0, column=0, isgen=False):
         if row==8 and column==9:
             return True
         
@@ -92,13 +112,15 @@ class Game(Page):
             column = 0
         
         if board[row][column].get() :
-            return self.solve(board, row, column+1)
+            return self.solve(board, row, column+1, isgen)
         
-        for i in range(1,10):
+        order = list(range(1,10))
+        random.shuffle(order)
+        for i in order:
             if self.valid_move(board, i, row, column):
                 board[row][column].set(i)
-                self.area.update()
-                if self.solve(board, row, column+1):
+                if not isgen : self.area.update()
+                if self.solve(board, row, column+1, isgen):
                     return True
             board[row][column].set("")
 
