@@ -72,11 +72,14 @@ class Game(Page):
         self.y_score = tkinter.Label(self.body, text=f"O : {y_wins}", background='white', font=('Arial',15))
         self.y_score.grid(row=0, column=2, sticky='nsew', pady=150)
 
-
+        self.buttons = []
         for i in range(3):
+            temp = []
             for j in range(3):
                 cell = self.xo_board[i][j]
-                tkinter.Button(self.area, text='e', image=self.ref.ximg if cell=='X' else self.ref.oimg if cell=='O' else self.ref.bimg , borderwidth=0, command=lambda a=i,b=j:self.click(a,b,'user')).grid(row=i, column=j, sticky='news')
+                temp.append(tkinter.Button(self.area, text='e', image=self.ref.ximg if cell=='X' else self.ref.oimg if cell=='O' else self.ref.bimg , borderwidth=0, command=lambda a=i,b=j:self.click(a,b,'user')))
+                temp[j].grid(row=i, column=j, sticky='news')
+            self.buttons.append(temp)
 
     def random_play(self):
         while True:
@@ -122,6 +125,9 @@ class Game(Page):
         return ' '
 
     def game_over(self, winner):
+        for i in range(3):
+            for j in range(3):
+                self.buttons[i][j].config(state=tkinter.DISABLED)
         global x_wins, y_wins
         if winner == 'draw' :
             self.next_play.configure(text='Game over: DRAW')

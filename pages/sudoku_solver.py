@@ -78,10 +78,15 @@ class Game(Page):
 
     def solve_sudoku(self, isgen=False):
         self.start = time.time()
+        self.solve_btn.config(state=tkinter.DISABLED)
         if not self.solve(self.sudoku_board, isgen=isgen):
-            self.msg = tkinter.Label(self.parent, text="UNSOLVABLE SUDOKU!", background='white', foreground='red', font=('Arial',20))
-            self.msg.place(x=settings.WIDTH//2,y=300, anchor='center')
-            self.area.after(1500, self.msg.destroy)
+            self.unsolvable()
+        self.solve_btn.config(state=tkinter.NORMAL)
+    
+    def unsolvable(self, txt="UNSOLVABLE!"):
+        self.msg = tkinter.Label(self.parent, text=txt, background='white', foreground='red', font=('Arial',20))
+        self.msg.place(x=settings.WIDTH//2,y=300, anchor='center')
+        self.area.after(1500, self.msg.destroy)
 
     
 
@@ -108,6 +113,9 @@ class Game(Page):
     def solve(self, board, row=0, column=0, isgen=False):
         if row==8 and column==9:
             return True
+        if time.time() - self.start > 12:
+            self.unsolvable()
+            return False
         
         if column==9:
             row += 1
