@@ -77,6 +77,7 @@ class Game(Page):
         return False
 
     def solve_sudoku(self, isgen=False):
+        self.area.focus_set()
         self.start = time.time()
         self.solve_btn.config(state=tkinter.DISABLED)
         if not self.solve(self.sudoku_board, isgen=isgen):

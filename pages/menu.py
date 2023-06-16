@@ -45,7 +45,9 @@ class Page:
         self.guess_btn = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/18.png'))
         tkinter.Button(self.launcher, image=self.guess_btn, borderwidth=0, background='white',  command=lambda: self.launch(pages.number_guess)).grid(row=1, column=1)
         
-        # tkinter.Button(self.launcher, image=self.xo_btn, borderwidth=0, background='white').grid(row=1, column=2)
+        self.clock_btn = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/clock.png'))
+        tkinter.Button(self.launcher, image=self.clock_btn, borderwidth=0, background='white',  command=lambda: self.launch(pages.countdown_timer)).grid(row=1, column=2)
+
         # tkinter.Button(self.launcher, image=self.xo_btn, borderwidth=0, background='white').grid(row=2, column=0)
 
 

@@ -29,7 +29,6 @@ class Page:
 
 class Game(Page):
     def __init__(self, parent, cwd, ref):
-        self.questions = settings.QUIZ_QUESTIONS.copy()
         self.parent = parent
         self.cwd = cwd
         self.ref = ref
@@ -39,6 +38,9 @@ class Game(Page):
         self.chosen = random.randint(1,99)
         self.tries = 0
         self.game_done = False
+        self.guessed = False
+        self.max_guess = 99
+        self.min_guess = 1
         self.display()
 
 
@@ -65,29 +67,39 @@ class Game(Page):
         if self.guess_var.get()=="??" and event.char.isdigit():
             self.guess_var.set('')
         current = self.guess_var.get()
+        if self.guessed and event.char.isdigit():
+            self.guess_var.set(event.char)
+            self.guessed = False
+            return
         if event.keycode == 13 and self.guess_var.get()!='??':
-            self.guess_var.set('')
             self.check(current)
+        
         elif event.keycode == 8:
             self.guess_var.set(current[:-1])
         elif event.char.isdigit() and len(current) < 2:
             self.guess_var.set(current+event.char)
+        
+
 
     def check(self, what):
         if not what.isdigit() :
             return
         self.tries += 1
+        self.guessed = True
         if int(what) > self.chosen:
-            self.feedback.set("TOO HIGH")
+            if int(what) < self.max_guess: self.max_guess = int(what)
+            self.feedback.set(f"TOO HIGH ({self.min_guess}<n<{self.max_guess})")
             self.guess_feedback.config(fg='red')
         elif int(what) < self.chosen:
-            self.feedback.set("TOO LOW")
+            if int(what) > self.min_guess: self.min_guess = int(what)
+            self.feedback.set(f"TOO LOW ({self.min_guess}<n<{self.max_guess})")
             self.guess_feedback.config(fg='blue')
-        elif int(what) == self.chosen:
+        if int(what) == self.chosen:
             self.guess_var.set(what)
             self.guess_feedback.config(fg='green')
             self.gameover(True)
-        if self.tries > settings.MAX_TRIES:
+            return
+        if self.tries >= settings.MAX_TRIES:
             self.guess_var.set(what)
             self.guess_feedback.config(fg='red')
             self.gameover(False)

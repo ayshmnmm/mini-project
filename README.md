@@ -9,3 +9,6 @@ A variety of small python programs using tkinter GUI.
 1. Tic-Tac-Toe
 2. Quiz
 3. Password Generator
+4. Sudoku
+5. Guess the Number
+6. Countdown Timer
