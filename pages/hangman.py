@@ -49,7 +49,8 @@ class Game(Page):
         self.area.rowconfigure(1,weight=1)
         self.area.columnconfigure(0,weight=1)
         self.area.rowconfigure(2,weight=1)
-        self.area.rowconfigure(3,weight=6)
+        self.area.rowconfigure(3,weight=1)
+        self.area.grid_rowconfigure(3, minsize=40)
 
 
         self.ref.hang_stages = []
@@ -60,9 +61,9 @@ class Game(Page):
         self.hanging_img.grid(row=0, column=0, sticky='s', pady=0)
 
         self.guess = tkinter.Label(self.area, text=self.calculate_text(), font=('Arial',25), background='white')
-        self.guess.grid(row=2, column=0)
+        self.guess.grid(row=1, column=0)
 
-        tkinter.Label(self.area, text=self.word[1], background='white').grid(row=1, column=0, sticky='news')
+        tkinter.Label(self.area, text=self.word[1], background='white').grid(row=2, column=0, sticky='news')
 
 
     def calculate_text(self):
