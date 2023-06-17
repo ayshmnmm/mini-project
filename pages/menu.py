@@ -26,10 +26,10 @@ class Page:
         self.launcher.columnconfigure(2,weight=1)
 
 
-        self.back_btn = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/cross.png'))
+        self.back_btn = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/blank.png'))
         self.title =  tkinter.PhotoImage(file=os.path.join(self.cwd,'img/replace_me.png'))
-        tkinter.Button(self.top_bar, image=self.back_btn, borderwidth=0, background='white', command=lambda: self.parent.destroy()).pack(side='left', padx=30, pady=25)
-        tkinter.Label(self.top_bar, image=self.title, borderwidth=0).place(anchor='center', x = settings.WIDTH//2, y = 50)
+        # tkinter.Button(self.top_bar, image=self.back_btn, borderwidth=0, background='white', command=lambda: self.parent.destroy()).pack(side='left', padx=30, pady=25)
+        tkinter.Label(self.top_bar, image=self.title, borderwidth=0).pack(side='top', pady=10)
 
 
         self.xo_btn = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/XO.png'))
@@ -50,7 +50,8 @@ class Page:
         self.clock_btn = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/clock.png'))
         tkinter.Button(self.launcher, image=self.clock_btn, borderwidth=0, background='white',  command=lambda: self.launch(pages.countdown_timer)).grid(row=1, column=2)
 
-        # tkinter.Button(self.launcher, image=self.xo_btn, borderwidth=0, background='white').grid(row=2, column=0)
+        self.hang_btn = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/hanged_man.png'))
+        tkinter.Button(self.launcher, image=self.hang_btn, borderwidth=0, background='white',  command=lambda: self.launch(pages.hangman)).grid(row=2, column=0)
 
         self.footer_img = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/heart.png'))
         self.footer = tkinter.Label(self.launcher, image=self.footer_img, bd=0, borderwidth=0)

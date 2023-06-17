@@ -137,7 +137,7 @@ class Game(Page):
         self.timer_running = False
         self.start_btn.config(image=self.ref.play)
         self.timer.update()
-        playsound.playsound(os.path.join(self.cwd,'audio/notify.mp3'), block=False)
+        playsound.playsound(os.path.join(self.cwd,'audio/notify.mp3'))
 
 
         
