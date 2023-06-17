@@ -16,13 +16,15 @@ class Page:
 
     def render(self):
         self.launcher = tkinter.Frame(self.menu, background='white')
-        self.launcher.pack(expand=True, fill='both', padx=75, pady=50)
+        self.launcher.pack(expand=True, fill='both', padx=75, pady=30)
         self.launcher.rowconfigure(0,weight=1)
         self.launcher.rowconfigure(1,weight=1)
         self.launcher.rowconfigure(2,weight=1)
+        self.launcher.rowconfigure(3,weight=1)
         self.launcher.columnconfigure(0,weight=1)
         self.launcher.columnconfigure(1,weight=1)
         self.launcher.columnconfigure(2,weight=1)
+
 
         self.back_btn = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/cross.png'))
         self.title =  tkinter.PhotoImage(file=os.path.join(self.cwd,'img/replace_me.png'))
@@ -49,6 +51,10 @@ class Page:
         tkinter.Button(self.launcher, image=self.clock_btn, borderwidth=0, background='white',  command=lambda: self.launch(pages.countdown_timer)).grid(row=1, column=2)
 
         # tkinter.Button(self.launcher, image=self.xo_btn, borderwidth=0, background='white').grid(row=2, column=0)
+
+        self.footer_img = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/heart.png'))
+        self.footer = tkinter.Label(self.launcher, image=self.footer_img, bd=0, borderwidth=0)
+        self.footer.grid(row=3,column=0,columnspan=3, sticky='s')
 
 
     def close(self):

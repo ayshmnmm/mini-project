@@ -44,11 +44,11 @@ class Game(Page):
         self.display()
 
         self.ref.solve_img = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/solve.png'))
-        self.solve_btn = tkinter.Button(self.sud_area, image=self.ref.solve_img, text='solve', bd=0 , command=self.solve_sudoku)
+        self.solve_btn = tkinter.Button(self.sud_area, image=self.ref.solve_img, text='solve', bd=0 , borderwidth=0, background='white', command=self.solve_sudoku)
         self.solve_btn.grid(row=1,column=1,sticky='ws',padx=20, pady=20)
 
         self.ref.generate_img = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/generate.png'))
-        self.generate_btn = tkinter.Button(self.sud_area, image=self.ref.generate_img, bd=0, text='generate', command=self.generate)
+        self.generate_btn = tkinter.Button(self.sud_area, image=self.ref.generate_img, bd=0, text='generate', borderwidth=0, background='white', command=self.generate)
         self.generate_btn.grid(row=1,column=0,sticky='es',padx=20, pady=20)
 
     def generate(self):
