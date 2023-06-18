@@ -1,6 +1,6 @@
 import tkinter 
 import os
-from pages import settings, menu, tic_tac_toe, quiz, password_generator, sudoku_solver, number_guess, countdown_timer, hangman
+from pages import settings, menu, tic_tac_toe, quiz, password_generator, sudoku_solver, number_guess, countdown_timer, hangman, chatbot
 
 root = tkinter.Tk()
 root.geometry(f'{settings.WIDTH}x{settings.HEIGHT}')

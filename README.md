@@ -10,5 +10,7 @@ A variety of small python programs using tkinter GUI.
 2. Quiz
 3. Password Generator
 4. Sudoku
-5. Guess the Number
-6. Countdown Timer
+5. Hangman
+6. Guess the Number
+7. Countdown Timer
+8. Chat bot

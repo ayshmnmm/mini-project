@@ -44,14 +44,17 @@ class Page:
         self.sudoku_btn = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/sudoku.png'))
         tkinter.Button(self.launcher, image=self.sudoku_btn, borderwidth=0, background='white', command=lambda: self.launch(pages.sudoku_solver)).grid(row=1, column=0)
 
+        self.hang_btn = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/hanged_man.png'))
+        tkinter.Button(self.launcher, image=self.hang_btn, borderwidth=0, background='white',  command=lambda: self.launch(pages.hangman)).grid(row=1, column=1)
+
         self.guess_btn = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/18.png'))
-        tkinter.Button(self.launcher, image=self.guess_btn, borderwidth=0, background='white',  command=lambda: self.launch(pages.number_guess)).grid(row=1, column=1)
+        tkinter.Button(self.launcher, image=self.guess_btn, borderwidth=0, background='white',  command=lambda: self.launch(pages.number_guess)).grid(row=1, column=2)
         
         self.clock_btn = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/clock.png'))
-        tkinter.Button(self.launcher, image=self.clock_btn, borderwidth=0, background='white',  command=lambda: self.launch(pages.countdown_timer)).grid(row=1, column=2)
+        tkinter.Button(self.launcher, image=self.clock_btn, borderwidth=0, background='white',  command=lambda: self.launch(pages.countdown_timer)).grid(row=2, column=0)
 
-        self.hang_btn = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/hanged_man.png'))
-        tkinter.Button(self.launcher, image=self.hang_btn, borderwidth=0, background='white',  command=lambda: self.launch(pages.hangman)).grid(row=2, column=0)
+        self.chat_btn = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/chatbot.png'))
+        tkinter.Button(self.launcher, image=self.chat_btn, borderwidth=0, background='white',  command=lambda: self.launch(pages.chatbot)).grid(row=2, column=1)
 
         self.footer_img = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/heart.png'))
         self.footer = tkinter.Label(self.launcher, image=self.footer_img, bd=0, borderwidth=0)

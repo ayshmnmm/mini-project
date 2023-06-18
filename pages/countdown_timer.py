@@ -79,19 +79,24 @@ class Game(Page):
         self.e2.bind("<FocusOut>", self.set_default)
         self.e3.bind("<FocusOut>", self.set_default)
 
+        self.spam_control = False
+
 
     def set_default(self, event):
         self.default_value = int(self.hour_var.get())*3600 + int(self.min_var.get())*60 + int(self.sec_var.get())
         
 
     def validate_input(self, data):
-        if len(data) <= 2 and data.isdigit():
+        if len(data) <= 2 and data.isdigit() and int(data) <= 59 :
             return True
         if data=='':
             return True
         return False
     
     def start_countdown(self):
+        if self.spam_control : return
+        self.spam_control = True
+        self.start_btn.after(530, lambda: self.set_free())
         if not self.hour_var.get(): self.hour_var.set('00')
         if not self.min_var.get(): self.min_var.set('00')
         if not self.sec_var.get(): self.sec_var.set('00')
@@ -106,6 +111,9 @@ class Game(Page):
             self.timer_running = True
             self.start_btn.config(image=self.ref.pause)
         self.timer.after(1000, self.update)
+
+    def set_free(self):
+        self.spam_control = False
 
     def reset(self):
         self.timer_running = False
