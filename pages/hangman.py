@@ -19,10 +19,11 @@ class Page:
         self.title =  tkinter.PhotoImage(file=os.path.join(self.cwd,'img/hangman.png'))
         tkinter.Button(self.top_bar, image=self.back_btn, borderwidth=0, background='white', command=self.close).pack(side='left', padx=30, pady=25)
         tkinter.Label(self.top_bar, image=self.title, borderwidth=0).place(anchor='center', x = settings.WIDTH//2, y = 50)
-        Game(self.page, self.cwd, self)
+        self.g = Game(self.page, self.cwd, self)
 
 
     def close(self):
+        self.g.game_done = True
         self.page.destroy()
         menu.Page(self.parent, self.cwd)
 

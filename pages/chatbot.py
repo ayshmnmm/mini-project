@@ -43,8 +43,6 @@ class Game(Page):
         self.parent = parent
         self.cwd = cwd
         self.ref = ref
-        self.timer_running = False
-        self.default_value = 5*60
         self.bottom_area = tkinter.Frame(self.parent, background='white')
         self.bottom_area.pack(expand=True, fill='both', padx=80, pady=45)
         self.bottom_area.columnconfigure(0, weight=1)
@@ -64,7 +62,7 @@ class Game(Page):
         self.input_wid = tkinter.Entry(self.input_area, textvariable=self.input_var, font=('Arial',15))
         self.input_wid.bind('<Return>',self.send)
         self.input_wid.focus()
-        self.input_wid.grid(row=0,column=0, sticky='news')
+        self.input_wid.grid(row=0,column=0, sticky='ew')
 
         self.ref.send_img = tkinter.PhotoImage(file=os.path.join(cwd, "img/send.png"))
         self.send_btn = tkinter.Button(self.input_area, image=self.ref.send_img, background='white', borderwidth=0, command=self.send)

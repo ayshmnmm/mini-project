@@ -35,6 +35,7 @@ class Game(Page):
         self.ref = ref
         self.gen_area = tkinter.Frame(self.parent, background='white')
         self.gen_area.pack(expand=True, fill='both')
+        self.limit = False
         self.display()
 
     def set_text(self, e, text):
@@ -60,12 +61,16 @@ class Game(Page):
         self.generate_password()
     
     def copy(self):
+        if self.limit : return
         self.confirmation = tkinter.Label(self.parent, text='Copied!', foreground='green', background='white', font=('Arial', 20))
         self.confirmation.place(x=settings.WIDTH//2,y=300,anchor='center')
-        self.copy_btn.config(state='disabled')
+        self.limit = True
         self.area.after(800, lambda: self.confirmation.destroy())
-        self.area.after(800, lambda: self.copy_btn.config(state='normal'))
+        self.area.after(800, lambda: self.update_limit())
         pyperclip.copy(self.password.get())
+
+    def update_limit(self):
+        self.limit = False
 
     def generate_password(self):
         passwd = []

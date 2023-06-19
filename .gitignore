@@ -5,3 +5,5 @@ __pycache__/
 
 # chatterbot db
 *.sqlite3
+
+.vscode
