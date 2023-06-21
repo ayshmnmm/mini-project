@@ -149,8 +149,8 @@ class Game(Page):
         for i in range(9):
             self.row = []
             for j in range(9):
-                self.row.append(tkinter.Entry(self.area, justify='center', font=('Arial', 20), relief=tkinter.RIDGE, textvariable=self.sudoku_board[i][j]))
-                self.row[j].grid(row=i,column=j, sticky='news')
+                self.row.append(tkinter.Entry(self.area, justify='center', font=('Arial', 20), relief=tkinter.FLAT, background='#fae9e1', highlightbackground='red', highlightcolor='red', textvariable=self.sudoku_board[i][j]))
+                self.row[j].grid(row=i,column=j, sticky='news', padx=1, pady=1)
                 self.row[j].config(validate="key", validatecommand=(self.reg, '%P'))
             self.entries.append(self.row)
 

@@ -59,7 +59,7 @@ class Game(Page):
         tkinter.Label(self.area, text=question, font=('Arial',15), background='white', wraplength=360).grid(row=0, column=0, sticky='n')
         self.buttons = []
         for i in range(1,5):
-            self.buttons.append(tkinter.Button(self.area, text=options[i-1], background='white', activebackground='#94e36f' if (i-1)==correct_index else '#e38f8f', bd=0, command=lambda x=i-1, bts=self.buttons:self.click(x,correct_index,bts), relief=tkinter.SUNKEN, borderwidth=1, disabledforeground='black'))
+            self.buttons.append(tkinter.Button(self.area, text=options[i-1], background='#fae9e1', activebackground='#94e36f' if (i-1)==correct_index else '#e38f8f', bd=0, command=lambda x=i-1, bts=self.buttons:self.click(x,correct_index,bts), relief=tkinter.FLAT, borderwidth=1, disabledforeground='black'))
         
         randorder = list(range(4))
         random.shuffle(randorder)
@@ -97,7 +97,7 @@ class Game(Page):
         self.message.rowconfigure(0,weight=1)
         self.message.columnconfigure(0,weight=1)
         tkinter.Label(self.message, text=f'{(100*self.score/self.count):.2f}%', font=('Arial',50), background='white').grid(row=0,column=0)
-        tkinter.Button(self.message, text='Play Again', background='white', font=('Arial',20), command=self.replay, relief=tkinter.GROOVE).grid(row=1,column=0, sticky='ew', pady=30, padx=40)
+        tkinter.Button(self.message, text='Play Again', background='#fae9e1', font=('Arial',20), command=self.replay, relief=tkinter.FLAT).grid(row=1,column=0, sticky='ew', pady=30, padx=40)
         # tkinter.Label(self.message, text='OVERRR')
 
     def replay(self):

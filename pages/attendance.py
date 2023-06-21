@@ -65,7 +65,7 @@ class Game(Page):
         
         total_attended = sum([x['attended'] for x in self.data])
         total = sum([x['total'] for x in self.data])
-        print(total_attended, total)
+        # print(total_attended, total)
         self.overall.config(text=f'{(total_attended/total)*100:.2f}%')
 
         self.sub_area.destroy()
@@ -82,7 +82,9 @@ class Game(Page):
             frame.columnconfigure(3, weight=1)
 
             tkinter.Label(frame, text=f"{sub['code']}", anchor='w', justify='left', font=('Arial',19), background='white').grid(row=0, column=0, sticky='nsw', rowspan=2)
-            tkinter.Label(frame, text=f"{sub['attended']/sub['total']*100:.2f}%\n{self.get_comment(sub)}", anchor='w', font=('Arial',9), justify='left', background='white', foreground=self.get_color(sub)).grid(row=0, column=1, sticky='sw')
+            if sub['total']: txt = f"{sub['attended']/sub['total']*100:.2f}%\n{self.get_comment(sub)}"
+            else: txt = ''
+            tkinter.Label(frame, text=txt, anchor='w', font=('Arial',9), justify='left', background='white', foreground=self.get_color(sub)).grid(row=0, column=1, sticky='sw')
             # tkinter.Label(frame, text=f"", anchor='w', justify='left', background='white').grid(row=1, column=1, sticky='nw')
 
             tkinter.Button(frame, text = 'Present', image=self.ref.present, background='white', borderwidth=0, command=lambda x=i: self.update(x, True)).grid(row=0, column=2)
@@ -103,15 +105,16 @@ class Game(Page):
     def get_color(self, sub):
         available_bunks = self.calculate_available(sub)
         if available_bunks >= 3:
-            return 'green'
+            return '#45a120'
         elif available_bunks > 0:
-            return 'orange'
+            return '#a19a20'
         else:
-            return 'red'
+            return '#eb4034'
     
         
     def calculate_available(self, sub):
         n = 0
+        if not sub['total']: return 0
         a = sub['total']
         while sub['attended']/a*100 >= 85:
             a += 1

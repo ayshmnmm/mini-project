@@ -105,7 +105,7 @@ class Game(Page):
         if not iswin:
             self.guess.config(text=f'ans : {self.word[0]}')
 
-        tkinter.Button(self.area, text='Play Again', background='white', font=('Arial',15), command=self.replay, relief=tkinter.GROOVE).grid(row=3,column=0, sticky='ew', pady=0, padx=100)
+        tkinter.Button(self.area, text='Play Again', background='#fae9e1', font=('Arial',15), command=self.replay, relief=tkinter.FLAT).grid(row=3,column=0, sticky='ew', pady=0, padx=100)
 
     def replay(self):
         Page(self.ref.parent,self.cwd)

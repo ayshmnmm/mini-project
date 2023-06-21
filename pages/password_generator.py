@@ -49,7 +49,7 @@ class Game(Page):
         self.area.columnconfigure(1, weight=1)
         self.area.rowconfigure(0, weight=5)
         self.area.rowconfigure(1, weight=1)
-        self.password = tkinter.Entry(self.area, font=('Arial',20), justify='center', relief='flat')
+        self.password = tkinter.Entry(self.area, font=('Arial',20), justify='center', relief='flat', background='#fae9e1', disabledbackground='#fae9e1', readonlybackground='#fae9e1')
         self.password.grid(row=0,column=0, columnspan=2, sticky='new')
 
         self.ref.refresh = tkinter.PhotoImage(file=os.path.join(self.cwd,'img/refresh.png'))

@@ -50,6 +50,9 @@ class Game(Page):
         self.area.rowconfigure(0,weight=4)
         self.area.rowconfigure(1,weight=1)
         self.area.columnconfigure(0,weight=1)
+        self.area.rowconfigure(2,weight=1)
+        self.area.grid_rowconfigure(2, minsize=40)
+
 
         self.guess_var = tkinter.StringVar(self.area,'??')
         self.guess = tkinter.Label(self.area, textvariable= self.guess_var, background='white', font=('Arial', 45))
@@ -111,10 +114,9 @@ class Game(Page):
         else:
             self.feedback.set(f"YOU LOSE (number was {self.chosen})")
 
-        self.area.rowconfigure(2,weight=1)
 
         tkinter.Button(self.area, text = 'Replay')
-        tkinter.Button(self.area, text='Play Again', background='white', font=('Arial',20), command=self.replay, relief=tkinter.GROOVE).grid(row=2,column=0, sticky='ew', pady=30, padx=40)
+        tkinter.Button(self.area, text='Play Again', background='#fae9e1', font=('Arial',20), command=self.replay, relief=tkinter.FLAT).grid(row=2,column=0, sticky='ew', pady=30, padx=40)
 
     def replay(self):
         Page(self.ref.parent,self.cwd)

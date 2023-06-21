@@ -57,7 +57,7 @@ class Game(Page):
         self.area.columnconfigure(1,weight=1)
         self.area.columnconfigure(2,weight=1)
 
-        self.next_play = tkinter.Label(self.body, text="to play : X", background='white')
+        self.next_play = tkinter.Label(self.body, text="to play : X", background='white', font=('Arial',15))
         self.next_play.grid(row=2,column=1, pady=10)
 
         self.ref.ximg =  tkinter.PhotoImage(file=os.path.join(self.cwd,'img/X.png'))
@@ -77,7 +77,7 @@ class Game(Page):
             temp = []
             for j in range(3):
                 cell = self.xo_board[i][j]
-                temp.append(tkinter.Button(self.area, text='e', image=self.ref.ximg if cell=='X' else self.ref.oimg if cell=='O' else self.ref.bimg , borderwidth=0, command=lambda a=i,b=j:self.click(a,b,'user')))
+                temp.append(tkinter.Button(self.area, text='e', image=self.ref.ximg if cell=='X' else self.ref.oimg if cell=='O' else self.ref.bimg , borderwidth=0, background='white', command=lambda a=i,b=j:self.click(a,b,'user')))
                 temp[j].grid(row=i, column=j, sticky='news')
             self.buttons.append(temp)
 
